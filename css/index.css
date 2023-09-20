@@ -1,0 +1,36 @@
+.logo{
+    height: 100%;
+    padding: 15px 10px;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    height: 100px;
+    width: 100%;
+    background-color: #18181b;
+}
+
+nav{
+    padding: 15px 10px;
+}
+
+nav a{
+    font-weight: bold;
+    padding: 15px 10px;
+    color:#f3931a;
+    text-decoration: none;
+}
+
+nav a:hover{
+    font-weight: bold;
+    color: #fdb225;
+}
+
+.title{
+    text-align:center;
+    color:#f3931a;
+    padding: 15px 10px;
+}
