@@ -8,6 +8,31 @@ const commands = [
         name: 'choice1',
         description: 'You can choice your first option for raid',
     },
+    {
+        name: 'choice2',
+        description: 'You can choice your 2nd option for raid',
+    },
+    {
+        name: 'choice3',
+        description: 'You can choice your 3rd option for raid',
+    },
+    {
+        name: 'remove-choice1',
+        description: 'Remove your 1st choice',
+    },
+    {
+        name: 'remove-choice2',
+        description: 'Remove your 2nd choice',
+    },
+    {
+        name: 'remove-choice3',
+        description: 'Remove your 3rd choice',
+    },
+    {
+        name: 'add-comment',
+        description: 'Add a comment to your entry',
+    },
+
 ]
 
 async function loadCommands(){
@@ -16,12 +41,14 @@ async function loadCommands(){
         const discordToken = database.collection('discordToken');
         const discordTokenData = await discordToken.findOne();
         const token = discordTokenData.token;
+        const clientID = discordTokenData.clientID;
+        const guildID = discordTokenData.guildID;
 
         const rest = new REST({ version: '10'}).setToken(token);
 
         console.log("Registering slash commands...")
         await rest.put(
-            Routes.applicationGuildCommands("639561961440280590", "421044100687724557"),
+            Routes.applicationGuildCommands(clientID, guildID),
             { body: commands }
         )
 

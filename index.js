@@ -28,9 +28,16 @@ app.get('/', async (req, res) => {
 app.get('/raid-roster', async (req, res) => {
   
 
-   
+  const database = client.db('thehysteria');
+  const players = database.collection('players');
+  const playersData = await players.find();
 
-  res.render("raid-roster");
+    res.render("raid-roster", { players: playersData });
+
+
+
+  
+  
   
 })
 
