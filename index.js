@@ -8,7 +8,7 @@ const loadExternalAPIs = require("./loadDiscord.js");
 
 app.use(express.static('public'))
 app.set("views", path.join(__dirname, "views"));
-app.set('view engine','ejs')
+app.set('view engine','pug')
 
 const { MongoClient } = require("mongodb");
 const uri = "mongodb://localhost:27017/";
@@ -17,22 +17,46 @@ const client = new MongoClient(uri);
 
 
 app.get('/', async (req, res) => {
-  
-  res.render("index");
+  var title = "Home"
+  res.render("index", { title });
 })
   
   
 
    
     
-app.get('/raid-roster', async (req, res) => {
+app.get('/raid-roster', (req, res) => {
   
 
   const database = client.db('thehysteria');
-  const players = database.collection('players');
-  const playersData = await players.find();
+  const playersCollection = database.collection('players');
+  const playersCollectionData =  playersCollection.find({});
 
-    res.render("raid-roster", { players: playersData });
+  const players = [];
+  playersCollectionData.forEach(function(player){
+    var title = "Raid Roster"
+    var playerObject = {
+      _id: player._id,
+      discordName: player.discordName,
+      characterName1: player.characterName1,
+      class1: player.class1,
+      role1: player.role1,
+      characterName2: player.characterName2,
+      class2: player.class2,
+      role2: player.role2,
+      characterName3: player.characterName3,
+      class3: player.class3,
+      role3: player.role3,
+      comment: player.comment
+    }
+    
+    players.push(playerObject)
+    res.render("raid-roster", { title, players});
+  })
+    
+
+    
+    
 
 
 

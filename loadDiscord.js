@@ -216,7 +216,8 @@ async function loadDiscord(){
           const classResponse = interaction.fields.getTextInputValue('class');
           const roleResponse = interaction.fields.getTextInputValue('role');
           const classCollection = database.collection('class');
-          const classDoesItExist = await classCollection.findOne({class: { $regex: new RegExp(classResponse, 'i') }});
+          const collation = { locale: 'en', strength: 2 };
+          const classDoesItExist = await classCollection.findOne({class: classResponse}, {collation});
 
           const roleCollection = database.collection('roles');
           const roleDoesItExist = await roleCollection.findOne({role: { $regex: new RegExp(roleResponse, 'i') }});

@@ -1,0 +1,40 @@
+html
+    include head.pug
+    script(src="/js/raid-roster.js")
+    link(rel="stylesheet" href="/css/raid-roster.css")
+    body 
+        include header.pug
+        h1(class="title") Raid Roster
+        div(class="container text-center")
+            div(class="row")
+
+            div(class="row")
+                div(class="col") id
+                div(class="col") Name
+                div(class="col") Character
+                div(class="col") Class
+                div(class="col") Role
+                div(class="col") Character
+                div(class="col") Class
+                div(class="col") Role
+                div(class="col") Character
+                div(class="col") Class
+                div(class="col") Role
+                div(class="col") Comment
+            each player in players 
+                div(class="row")
+                    div(class="col d-flex align-items-center justify-content-center")= player._id
+                    div(class="col d-flex align-items-center justify-content-center")= player.discordName
+                    div(class="col  d-flex align-items-center justify-content-center " + player.class1)= player.characterName1
+                    div(class="col  d-flex align-items-center justify-content-center " + player.class1)= player.class1
+                    div(class="col  d-flex align-items-center justify-content-center " + player.class1)= player.role1
+                    div(class="col d-flex align-items-center justify-content-center " + player.class2)= player.characterName2
+                    div(class="col d-flex align-items-center justify-content-center " + player.class2)= player.class2
+                    div(class="col d-flex align-items-center justify-content-center " + player.class2)= player.role2
+                    div(class="col d-flex align-items-center justify-content-center " + player.class3)= player.characterName3
+                    div(class="col d-flex align-items-center justify-content-center " + player.class3)= player.class3
+                    div(class="col d-flex align-items-center justify-content-center " + player.class3)= player.role3
+                    div(class="col d-flex align-items-center justify-content-center")= player.comment
+
+                    
+                
